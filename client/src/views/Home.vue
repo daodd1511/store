@@ -1,15 +1,24 @@
 <script setup>
-import { ref } from "vue";
-import axios from "axios";
-import env from "../../env.js";
-let data = ref();
-axios
-  .get(`${env.API_URL}/products`)
-  .then((response) => (data.value = response.data));
+import { onBeforeMount, ref } from "vue";
+import { useStore } from "../store/store.js";
+const store = useStore();
+onBeforeMount(async () => {
+  await store.getAllProducts();
+});
 </script>
 
 <template>
-  <p>{{ data }}</p>
+  <ul>
+    <li v-for="(item, i) in store.allProduct">
+      {{ item._id }} - {{ item.name }} - {{ item.price }}$
+      <img :src="item.image" alt="Product image" />
+      <router-link :to="`/update/` + item._id"
+        ><button>Update</button></router-link
+      >
+      <button @click="store.deleteProduct(item._id)">Delete</button>
+    </li>
+  </ul>
+  <router-link to="/add"><button>Add</button></router-link>
 </template>
 
 <style></style>

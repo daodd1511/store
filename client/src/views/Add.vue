@@ -1,19 +1,19 @@
 <script setup>
-import axios from "axios";
 import { ref } from "vue";
-import env from "../../env.js";
 import router from "../router/router.js";
+import { useStore } from "../store/store.js";
+const store = useStore();
 let name = ref("");
 let price = ref();
+let image = ref("");
+store.status = 0;
 const post = async () => {
-  const data = {
+  const productData = {
     name: name.value,
     price: price.value,
+    image: image.value,
   };
-  await axios
-    .post(`${env.API_URL}/add`, data)
-    .then((response) => console.log(response.data))
-    .catch((error) => console.error(error));
+  await store.addProduct(productData);
   router.push("/");
 };
 </script>
@@ -22,9 +22,12 @@ const post = async () => {
   <form @submit.prevent="post()">
     <label for="name">Name</label>
     <input autocomplete="off" type="text" id="name" v-model="name" />
+    <br />
     <label for="price">Price</label>
-    <input type="text" id="price" v-model="price" />
-    <input type="submit" value="Submit" />
+    <input type="text" id="price" v-model="price" /><br />
+    <label for="image">Image</label>
+    <input type="text" id="image" v-model="image" /><br />
+    <input type="submit" value="Add" />
   </form>
 </template>
 

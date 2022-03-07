@@ -1,10 +1,8 @@
 import mongoose from "mongoose";
 const connectDatabase = () => {
-  const mongoDbURI =
-    "mongodb+srv://psg9615:0358937727@learnnode.ydfqz.mongodb.net/learnnode?retryWrites=true&w=majority";
-  console.log(`Connecting to ${mongoDbURI}`);
+  console.log(`Connecting to ${process.env.MongoURI}`);
   mongoose
-    .connect(mongoDbURI, {
+    .connect(process.env.MongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })

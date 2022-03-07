@@ -1,70 +1,20 @@
 import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
-import bodyParser from "body-parser";
-import Product from "./models/products.js";
+import helmet from "helmet";
+import morgan from "morgan";
+import router from "./src/router/router.js";
+import connectDatabase from "./src/config/db.config.js";
+connectDatabase();
 const app = express();
+app.use(helmet());
+app.use(morgan("dev"));
 app.use(cors());
-app.use(bodyParser.json());
-// Mongo URI
-const dbURI =
-  "mongodb+srv://psg9615:0358937727@learnnode.ydfqz.mongodb.net/learnnode?retryWrites=true&w=majority";
-// Connect database
-mongoose
-  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .catch((err) => console.log(err));
-
+app.use(express.json());
 const PORT = 4000;
-app.listen(PORT);
-// ----------Create---------------
-app.post("/api/add", (req, res) => {
-  const product = new Product(req.body);
-  product
-    .save()
-    .then(() => {
-      res.sendStatus(200);
-    })
-    .catch((err) => res.sendStatus(500).json(err.message));
+app.use("/api", router);
+app.get("/", (req, res) => {
+  res.send("Hello world!");
 });
-// ----------Read---------------
-app.get("/api/products", (req, res) => {
-  Product.find()
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => res.sendStatus(500).json(err.message));
-});
-// ----------Update---------------
-app.put("/api/update/:id", async (req, res) => {
-  await Product.findByIdAndUpdate(req.params.id, req.body)
-    .then(async () => {
-      // Get updated product
-      const updatedProduct = await Product.findById(req.params.id);
-      res.send(updatedProduct);
-    })
-    .catch((err) => {
-      res.sendStatus(500).json(err.message);
-    });
-  // const doc = await Product.findById(req.params.id);
-  // res.send(doc);
-});
-// ----------Delete---------------
-app.delete("/api/delete/:id", async (req, res) => {
-  await Product.findByIdAndRemove(req.params.id)
-    .then(async () => {
-      // Get new products when delete is successful
-      const newProducts = await Product.find();
-      res.send(newProducts);
-    })
-    .catch((err) => {
-      res.status(500).json(err.message);
-    });
-  // const doc = await Product.find();
-  // res.send(doc);
-});
-// ----------Find---------------
-app.get("/api/find/:id", async (req, res) => {
-  await Product.findById(req.params.id).then((result) => {
-    res.send(result);
-  });
+app.listen(PORT, () => {
+  console.log(`Server is listening on PORT: ${PORT}`);
 });

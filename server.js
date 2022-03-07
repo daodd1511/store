@@ -16,7 +16,7 @@ app.use("/api", router);
 app.get("/", (req, res) => {
   res.send("Hello world!");
 });
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log(`Server is listening on PORT: ${port}`);
 });

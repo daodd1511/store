@@ -4,13 +4,18 @@ import { onBeforeMount, ref } from "vue";
 import { useRoute } from "vue-router";
 const store = useStore();
 const route = useRoute();
+store.status = 0;
 onBeforeMount(async () => {
   store.status = 0;
   await store.getProductById(route.params.id);
 });
+const update = async () => {
+  await store.updateProduct(route.params.id);
+  await store.getProductById(route.params.id);
+};
 </script>
 <template>
-  <form @submit.prevent="store.updateProduct(route.params.id)">
+  <form @submit.prevent="update()">
     <label for="name">Name</label>
     <input type="text" id="name" v-model="store.product.name" />
     <br />

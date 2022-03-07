@@ -22,10 +22,10 @@ export const useStore = defineStore("store", {
         .then((response) => (this.allProduct = response.data));
     },
     async updateProduct(id) {
+      const productData = this.product;
       await axios
-        .put(`${env.API_URL}/update/${id}`, this.product)
+        .put(`${env.API_URL}/update/${id}`, productData)
         .then((response) => {
-          this.product = response.data;
           this.status = response.status;
         });
     },

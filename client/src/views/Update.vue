@@ -6,12 +6,10 @@ const store = useStore();
 const route = useRoute();
 store.status = 0;
 onBeforeMount(async () => {
-  store.status = 0;
   await store.getProductById(route.params.id);
 });
 const update = async () => {
   await store.updateProduct(route.params.id);
-  await store.getProductById(route.params.id);
 };
 </script>
 <template>

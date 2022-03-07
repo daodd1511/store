@@ -6,7 +6,6 @@ const store = useStore();
 let name = ref("");
 let price = ref();
 let image = ref("");
-store.status = 0;
 const post = async () => {
   const productData = {
     name: name.value,

@@ -9,10 +9,11 @@ onBeforeMount(async () => {
 
 <template>
   <ul>
-    <li v-for="(item, i) in store.allProduct">
-      {{ item._id }} - {{ item.name }} - {{ item.price }}$
-      <img :src="item.image" alt="Product image" />
-      <router-link :to="`/update/` + item._id"
+    <li v-for="item in store.allProduct">
+      {{ item._id }} - {{ item.general.name }} - {{ item.general.price }}$
+      <br />
+      <img :src="item.image.medium" alt="Product image" />
+      <router-link :to="`/update?category=${item.category}&id=${item._id}`"
         ><button>Update</button></router-link
       >
       <button @click="store.deleteProduct(item._id)">Delete</button>

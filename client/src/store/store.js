@@ -18,7 +18,7 @@ export const useStore = defineStore("store", {
     },
     async getAllProducts() {
       await axios
-        .get(`${env.API_URL}/products`)
+        .get(`${env.API_URL}/products/?category=laptop`)
         .then((response) => (this.allProduct = response.data));
     },
     async updateProduct(id) {
@@ -35,10 +35,13 @@ export const useStore = defineStore("store", {
         this.status = response.status;
       });
     },
-    async getProductById(id) {
-      await axios.get(`${env.API_URL}/find/${id}`).then((response) => {
-        this.product = response.data;
-      });
+    async getProduct(id, category) {
+      await axios
+        .get(`${env.API_URL}/find/?category=${category}&id=${id}`)
+        .then((response) => {
+          this.product = {};
+          this.product = response.data;
+        });
     },
   },
 });

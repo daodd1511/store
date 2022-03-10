@@ -7,7 +7,7 @@ const route = useRoute();
 let productData = ref();
 store.status = 0;
 onBeforeMount(async () => {
-  await store.getProduct(route.query.id, route.query.category);
+  await store.getProductById(route.query.id, route.query.category);
   productData.value = store.product;
 });
 const update = async () => {

@@ -2,29 +2,35 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 const laptopSchema = new Schema(
   {
-    category: String,
+    category: { type: String, required: true },
     general: {
-      name: String,
-      brand: String,
-      price: Number,
+      name: { type: String, required: true },
+      brand: { type: String, required: true },
+      price: { type: Number, required: true },
     },
     image: {
-      medium: String,
-      large: String,
+      medium: { type: String, required: true },
+      large: { type: String, required: true },
     },
     screen: {
-      size: Number,
-      resolution: String,
+      size: { type: Number, required: true },
+      resolution: { type: String, required: true },
     },
     processor: {
-      model: String,
-      model_number: String,
+      model: { type: String, required: true },
+      model_number: { type: String, required: true },
     },
-    storage: { storageType: String, capacity: Number },
-    memory: { memoryType: String, capacity: Number },
+    storage: {
+      storageType: { type: String, required: true },
+      capacity: { type: Number, required: true },
+    },
+    memory: {
+      memoryType: { type: String, required: true },
+      capacity: { type: Number, required: true },
+    },
     graphics: {
-      graphicsType: String,
-      graphics: String,
+      graphicsType: { type: String, required: true },
+      graphics: { type: String, required: true },
     },
   },
   { timestamps: true }

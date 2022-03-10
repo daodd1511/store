@@ -1,33 +1,12 @@
 <script setup>
-import { ref } from "vue";
-import router from "../router/router.js";
-import { useStore } from "../store/store.js";
-const store = useStore();
-let name = ref("");
-let price = ref();
-let image = ref("");
-const post = async () => {
-  const productData = {
-    name: name.value,
-    price: price.value,
-    image: image.value,
-  };
-  await store.addProduct(productData);
-  router.push("/");
-};
+import AddPhoneForm from "../components/AddPhoneForm.vue";
+import AddLaptopForm from "../components/AddLaptopForm.vue";
+import { useRoute } from "vue-router";
+const route = useRoute();
 </script>
 <template>
-  <div>Add</div>
-  <form @submit.prevent="post()">
-    <label for="name">Name</label>
-    <input autocomplete="off" type="text" id="name" v-model="name" />
-    <br />
-    <label for="price">Price</label>
-    <input type="text" id="price" v-model="price" /><br />
-    <label for="image">Image</label>
-    <input type="text" id="image" v-model="image" /><br />
-    <input type="submit" value="Add" />
-  </form>
+  <AddPhoneForm v-if="route.query.category == 'phone'"></AddPhoneForm>
+  <AddLaptopForm v-if="route.query.category == 'laptop'"></AddLaptopForm>
 </template>
 
 <style scoped></style>

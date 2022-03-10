@@ -4,7 +4,7 @@ import axios from "axios";
 export const useStore = defineStore("store", {
   state: () => {
     return {
-      allProduct: [],
+      allProduct: {},
       product: {},
       status: 0,
     };
@@ -16,26 +16,28 @@ export const useStore = defineStore("store", {
         .then((response) => (this.status = response.status))
         .catch((error) => console.error(error));
     },
-    async getAllProducts() {
+    async getAllProducts(category) {
       await axios
-        .get(`${env.API_URL}/products/?category=laptop`)
+        .get(`${env.API_URL}/products?category=${category}`)
         .then((response) => (this.allProduct = response.data));
     },
     async updateProduct(id) {
       const productData = this.product;
       await axios
-        .put(`${env.API_URL}/update/${id}`, productData)
+        .put(`${env.API_URL}/update?id=${id}`, productData)
         .then((response) => {
           this.status = response.status;
         });
     },
-    async deleteProduct(id) {
-      await axios.delete(`${env.API_URL}/delete/${id}`).then((response) => {
-        this.allProduct = response.data;
-        this.status = response.status;
-      });
+    async deleteProduct(id, category) {
+      await axios
+        .delete(`${env.API_URL}/delete?category=${category}&id=${id}`)
+        .then((response) => {
+          this.allProduct = response.data;
+          this.status = response.status;
+        });
     },
-    async getProduct(id, category) {
+    async getProductById(id, category) {
       await axios
         .get(`${env.API_URL}/find/?category=${category}&id=${id}`)
         .then((response) => {

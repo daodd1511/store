@@ -1,0 +1,140 @@
+<script setup>
+import { ref } from "vue";
+import router from "../router/router.js";
+import { useStore } from "../store/store.js";
+const store = useStore();
+let name = ref("");
+let brand = ref("");
+let price = ref();
+let img_md = ref("");
+let img_lg = ref("");
+let size = ref();
+let resolution = ref("");
+let cpu_model = ref("");
+let cpu = ref("");
+let storageType = ref("");
+let storgeCapacity = ref();
+let memoryType = ref("");
+let memoryCapacity = ref();
+let graphicsType = ref("");
+let graphics = ref();
+const post = async () => {
+  const productData = {
+    category: "laptop",
+    general: {
+      name: name.value,
+      brand: brand.value,
+      price: price.value,
+    },
+    image: {
+      medium: img_md.value,
+      large: img_lg.value,
+    },
+    screen: {
+      size: size.value,
+      resolution: resolution.value,
+    },
+    processor: {
+      model: cpu_model.value,
+      model_number: cpu.value,
+    },
+    storage: {
+      storageType: storageType.value,
+      capacity: storgeCapacity.value,
+    },
+    memory: {
+      memoryType: memoryType.value,
+      capacity: memoryCapacity.value,
+    },
+    graphics: {
+      graphicsType: graphicsType.value,
+      graphics: graphics.value,
+    },
+  };
+  await store.addProduct(productData);
+  router.push("/");
+};
+</script>
+<template>
+  <h2>Add Laptop</h2>
+  <div>
+    <form @submit.prevent="post()">
+      <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" v-model="name" />
+      </div>
+      <div>
+        <label for="brand">Brand</label>
+        <input type="text" id="brand" v-model="brand" />
+      </div>
+      <div>
+        <label for="price">Price</label>
+        <input type="text" id="price" v-model="price" />
+        $
+      </div>
+      <div>
+        <label for="img_md">Image</label>
+        <input type="text" id="img_md" v-model="img_md" />
+        <a href="#" target="blank">Preview</a>
+      </div>
+      <div>
+        <label for="img_lg">Image</label>
+        <input type="text" id="img_lg" v-model="img_lg" />
+        <a href="#" target="blank">Preview</a>
+      </div>
+      <div>
+        <label for="size">Screen Size</label>
+        <input type="text" id="size" v-model="size" />
+      </div>
+      <div>
+        <label for="resolution">Resolution</label>
+        <input type="text" id="resolution" v-model="resolution" />
+      </div>
+      <div>
+        <label for="cpu_model">Processor Model</label>
+        <input type="text" id="cpu_model" v-model="cpu_model" />
+      </div>
+      <div>
+        <label for="cpu">Processor</label>
+        <input type="text" id="cpu" v-model="cpu" />
+      </div>
+      <div>
+        <label for="storage">Storage</label>
+        <input type="text" id="storage" v-model="storageType" />
+      </div>
+      <div>
+        <label for="storageCap">Storage Capacity</label>
+        <input type="text" id="storageCap" v-model="storgeCapacity" />
+        GB
+      </div>
+      <div>
+        <label for="memory">Memory</label>
+        <input type="text" id="memory" v-model="memoryType" />
+      </div>
+      <div>
+        <label for="memory">Memory Capacity</label>
+        <input type="text" id="memory" v-model="memoryCapacity" />
+        GB
+      </div>
+      <div>
+        <label for="graphics_type">Graphics Type</label>
+        <input type="text" id="graphics_type" v-model="graphicsType" />
+      </div>
+      <div>
+        <label for="graphics">Graphics</label>
+        <input type="text" id="graphics" v-model="graphics" />
+      </div>
+      <input type="submit" value="Update" />
+    </form>
+  </div>
+</template>
+
+<style scoped>
+label {
+  display: block;
+}
+input {
+  width: 70%;
+  margin-bottom: 10px;
+}
+</style>

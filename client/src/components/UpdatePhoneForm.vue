@@ -19,25 +19,41 @@ const update = async () => {
     <form @submit.prevent="update()">
       <div>
         <label for="name">Name</label>
-        <input type="text" id="name" v-model="productData.general.name" />
+        <input
+          required
+          type="text"
+          id="name"
+          v-model="productData.general.name"
+        />
       </div>
       <div>
         <label for="brand">Brand</label>
-        <input type="text" id="brand" v-model="productData.general.brand" />
+        <input
+          required
+          type="text"
+          id="brand"
+          v-model="productData.general.brand"
+        />
       </div>
       <div>
         <label for="price">Price</label>
-        <input type="text" id="price" v-model="productData.general.price" />
+        <input
+          required
+          type="text"
+          id="price"
+          v-model="productData.general.price"
+        />
         $
       </div>
       <div>
         <label for="img">Image</label>
-        <input type="text" id="img" v-model="productData.image" />
+        <input required type="text" id="img" v-model="productData.image" />
         <a :href="productData.image" target="blank">Preview</a>
       </div>
       <div>
         <label for="os">Operating System</label>
         <input
+          required
           type="text"
           id="os"
           v-model="productData.keyspecs.operating_system"
@@ -46,6 +62,7 @@ const update = async () => {
       <div>
         <label for="storage">Storage</label>
         <input
+          required
           type="text"
           id="storage"
           v-model="productData.keyspecs.storage"
@@ -55,6 +72,7 @@ const update = async () => {
       <div>
         <label for="memory">Memory</label>
         <input
+          required
           type="number"
           id="memory"
           v-model="productData.keyspecs.memory"
@@ -63,11 +81,17 @@ const update = async () => {
       </div>
       <div>
         <label for="cpu">Processor</label>
-        <input type="text" id="cpu" v-model="productData.keyspecs.processor" />
+        <input
+          required
+          type="text"
+          id="cpu"
+          v-model="productData.keyspecs.processor"
+        />
       </div>
       <div>
         <label for="front_cam">Front Camera</label>
         <input
+          required
           type="text"
           id="front_cam"
           v-model="productData.keyspecs.front_camera"
@@ -77,6 +101,7 @@ const update = async () => {
       <div>
         <label for="rear_cam">Rear Camera</label>
         <input
+          required
           type="text"
           id="rear_cam"
           v-model="productData.keyspecs.rear_camera"
@@ -85,10 +110,15 @@ const update = async () => {
       </div>
       <div>
         <label for="resolution">Resolution</label>
-        <input type="text" id="resolution" v-model="productData.resolution" />
+        <input
+          required
+          type="text"
+          id="resolution"
+          v-model="productData.resolution"
+        />
         megapixels
       </div>
-      <input type="submit" value="Update" />
+      <input required type="submit" value="Update" />
     </form>
     <p v-if="store.status == 200">Success!</p>
   </div>

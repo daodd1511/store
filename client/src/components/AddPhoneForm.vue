@@ -43,56 +43,56 @@ const post = async () => {
     <form @submit.prevent="post()">
       <div>
         <label for="name">Name</label>
-        <input type="text" id="name" v-model="name" />
+        <input required type="text" id="name" v-model="name" />
       </div>
       <div>
         <label for="brand">Brand</label>
-        <input type="text" id="brand" v-model="brand" />
+        <input required type="text" id="brand" v-model="brand" />
       </div>
       <div>
         <label for="price">Price</label>
-        <input type="text" id="price" v-model="price" />
+        <input required type="text" id="price" v-model="price" />
         $
       </div>
       <div>
         <label for="img">Image</label>
-        <input type="text" id="img" v-model="img" />
+        <input required type="text" id="img" v-model="img" />
         <a href="#" target="blank">Preview</a>
       </div>
       <div>
         <label for="os">Operating System</label>
-        <input type="text" id="os" v-model="os" />
+        <input required type="text" id="os" v-model="os" />
       </div>
       <div>
         <label for="storage">Storage</label>
-        <input type="text" id="storage" v-model="storage" />
+        <input required type="text" id="storage" v-model="storage" />
         gigabytes
       </div>
       <div>
         <label for="memory">Memory</label>
-        <input type="number" id="memory" v-model="memory" />
+        <input required type="number" id="memory" v-model="memory" />
         gigabytes
       </div>
       <div>
         <label for="cpu">Processor</label>
-        <input type="text" id="cpu" v-model="cpu" />
+        <input required type="text" id="cpu" v-model="cpu" />
       </div>
       <div>
         <label for="front_cam">Front Camera</label>
-        <input type="text" id="front_cam" v-model="front_cam" />
+        <input required type="text" id="front_cam" v-model="front_cam" />
         megapixels
       </div>
       <div>
         <label for="rear_cam">Rear Camera</label>
-        <input type="text" id="rear_cam" v-model="rear_cam" />
+        <input required type="text" id="rear_cam" v-model="rear_cam" />
         megapixels
       </div>
       <div>
         <label for="resolution">Resolution</label>
-        <input type="text" id="resolution" v-model="resolution" />
+        <input required type="text" id="resolution" v-model="resolution" />
         megapixels
       </div>
-      <input type="submit" value="Update" />
+      <input required type="submit" value="Update" />
     </form>
   </div>
 </template>

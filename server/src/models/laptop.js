@@ -8,10 +8,7 @@ const laptopSchema = new Schema(
       brand: { type: String, required: true },
       price: { type: Number, required: true },
     },
-    image: {
-      medium: { type: String, required: true },
-      large: { type: String, required: true },
-    },
+    image: { type: String, required: true },
     screen: {
       size: { type: Number, required: true },
       resolution: { type: String, required: true },

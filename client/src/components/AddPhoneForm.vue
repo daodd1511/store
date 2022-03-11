@@ -23,10 +23,7 @@ const post = async () => {
       brand: brand.value,
       price: price.value,
     },
-    image: {
-      medium: img_md.value,
-      large: img_lg.value,
-    },
+    image: img.value,
     keyspecs: {
       operating_system: os.value,
       storage: storage.value,

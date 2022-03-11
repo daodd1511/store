@@ -14,10 +14,9 @@ ProductController.getAllProducts = async (req, res) => {
       default:
         break;
     }
-    console.log(products);
     res.send(products);
   } catch (err) {
-    console.error(err);
+    res.send(err);
   }
 };
 ProductController.findProductById = async (req, res) => {
@@ -35,7 +34,7 @@ ProductController.findProductById = async (req, res) => {
     }
     res.send(product);
   } catch (err) {
-    console.error(err);
+    res.send(err);
   }
 };
 ProductController.addProduct = async (req, res) => {
@@ -52,7 +51,7 @@ ProductController.addProduct = async (req, res) => {
     }
     res.sendStatus(200);
   } catch (err) {
-    console.error(err);
+    res.send(err);
   }
 };
 ProductController.updateProduct = async (req, res) => {
@@ -69,7 +68,7 @@ ProductController.updateProduct = async (req, res) => {
     }
     res.sendStatus(200);
   } catch (err) {
-    console.error(err);
+    res.send(err);
   }
 };
 ProductController.deleteProduct = async (req, res) => {
@@ -89,7 +88,7 @@ ProductController.deleteProduct = async (req, res) => {
         break;
     }
   } catch (err) {
-    console.error(err);
+    res.send(err);
   }
 };
 export default ProductController;

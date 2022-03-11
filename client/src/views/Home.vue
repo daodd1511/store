@@ -26,7 +26,7 @@ const getAllLaptop = async () => {
     <li v-for="item in store.allProduct">
       {{ item._id }} - {{ item.general.name }} - {{ item.general.price }}$
       <br />
-      <img :src="item.image.medium" alt="Product image" />
+      <img :src="item.image" alt="Product image" />
       <router-link :to="`/update?category=${item.category}&id=${item._id}`"
         ><button>Update</button></router-link
       >

@@ -50,7 +50,7 @@ const update = async () => {
           id="storage"
           v-model="productData.keyspecs.storage"
         />
-        GB
+        gigabytes
       </div>
       <div>
         <label for="memory">Memory</label>
@@ -59,7 +59,7 @@ const update = async () => {
           id="memory"
           v-model="productData.keyspecs.memory"
         />
-        GB
+        gigabytes
       </div>
       <div>
         <label for="cpu">Processor</label>
@@ -72,7 +72,7 @@ const update = async () => {
           id="front_cam"
           v-model="productData.keyspecs.front_camera"
         />
-        MP
+        megapixels
       </div>
       <div>
         <label for="rear_cam">Rear Camera</label>
@@ -81,12 +81,12 @@ const update = async () => {
           id="rear_cam"
           v-model="productData.keyspecs.rear_camera"
         />
-        MP
+        megapixels
       </div>
       <div>
         <label for="resolution">Resolution</label>
         <input type="text" id="resolution" v-model="productData.resolution" />
-        MP
+        megapixels
       </div>
       <input type="submit" value="Update" />
     </form>

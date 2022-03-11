@@ -3,9 +3,9 @@ import { onBeforeMount, ref } from "vue";
 import { useStore } from "../store/store.js";
 const store = useStore();
 const category = ref("");
-const productsData = ref();
 onBeforeMount(async () => {
   getAllLaptop();
+  // getAllPhone();
 });
 const getAllPhone = async () => {
   category.value = "phone";
@@ -35,10 +35,16 @@ const getAllLaptop = async () => {
       </button>
     </li>
   </ul>
-  <router-link to="/add?category=laptop"
+  <router-link to="/add?category=laptop" v-if="category == 'laptop'"
     ><button>Add Laptop</button></router-link
   >
-  <router-link to="/add?category=phone"><button>Add Phone</button></router-link>
+  <router-link to="/add?category=phone" v-if="category == 'phone'"
+    ><button>Add Phone</button></router-link
+  >
 </template>
 
-<style></style>
+<style scoped>
+img {
+  max-width: 200px;
+}
+</style>

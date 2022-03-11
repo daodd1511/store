@@ -37,7 +37,7 @@ const update = async () => {
       </div>
       <div>
         <label for="size">Screen Size</label>
-        <input type="number" id="size" v-model="productData.screen.size" />
+        <input type="text" id="size" v-model="productData.screen.size" />
       </div>
       <div>
         <label for="resolution">Resolution</label>
@@ -78,7 +78,7 @@ const update = async () => {
           id="storageCap"
           v-model="productData.storage.capacity"
         />
-        GB
+        gigabytes
       </div>
       <div>
         <label for="memory">Memory</label>
@@ -95,7 +95,7 @@ const update = async () => {
           id="memory"
           v-model="productData.memory.capacity"
         />
-        GB
+        gigabytes
       </div>
       <div>
         <label for="graphics_type">Graphics Type</label>

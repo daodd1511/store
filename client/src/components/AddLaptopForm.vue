@@ -6,8 +6,7 @@ const store = useStore();
 let name = ref("");
 let brand = ref("");
 let price = ref();
-let img_md = ref("");
-let img_lg = ref("");
+let img = ref("");
 let size = ref();
 let resolution = ref("");
 let cpu_model = ref("");
@@ -26,10 +25,7 @@ const post = async () => {
       brand: brand.value,
       price: price.value,
     },
-    image: {
-      medium: img_md.value,
-      large: img_lg.value,
-    },
+    image: img.value,
     screen: {
       size: size.value,
       resolution: resolution.value,
@@ -73,13 +69,8 @@ const post = async () => {
         $
       </div>
       <div>
-        <label for="img_md">Image</label>
-        <input type="text" id="img_md" v-model="img_md" />
-        <a href="#" target="blank">Preview</a>
-      </div>
-      <div>
-        <label for="img_lg">Image</label>
-        <input type="text" id="img_lg" v-model="img_lg" />
+        <label for="img">Image</label>
+        <input type="text" id="img" v-model="img" />
         <a href="#" target="blank">Preview</a>
       </div>
       <div>
@@ -105,7 +96,7 @@ const post = async () => {
       <div>
         <label for="storageCap">Storage Capacity</label>
         <input type="text" id="storageCap" v-model="storgeCapacity" />
-        GB
+        gigabytes
       </div>
       <div>
         <label for="memory">Memory</label>
@@ -114,7 +105,7 @@ const post = async () => {
       <div>
         <label for="memory">Memory Capacity</label>
         <input type="text" id="memory" v-model="memoryCapacity" />
-        GB
+        gigabytes
       </div>
       <div>
         <label for="graphics_type">Graphics Type</label>

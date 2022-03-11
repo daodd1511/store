@@ -6,8 +6,7 @@ const store = useStore();
 let name = ref("");
 let brand = ref("");
 let price = ref();
-let img_md = ref("");
-let img_lg = ref("");
+let img = ref("");
 let os = ref("");
 let storage = ref();
 let memory = ref(null);
@@ -35,7 +34,7 @@ const post = async () => {
     resolution: resolution.value,
   };
   await store.addProduct(productData);
-  router.push("/");
+  router.replace("/");
 };
 </script>
 <template>
@@ -56,13 +55,8 @@ const post = async () => {
         $
       </div>
       <div>
-        <label for="img_md">Image</label>
-        <input type="text" id="img_md" v-model="img_md" />
-        <a href="#" target="blank">Preview</a>
-      </div>
-      <div>
-        <label for="img_lg">Image</label>
-        <input type="text" id="img_lg" v-model="img_lg" />
+        <label for="img">Image</label>
+        <input type="text" id="img" v-model="img" />
         <a href="#" target="blank">Preview</a>
       </div>
       <div>
@@ -72,12 +66,12 @@ const post = async () => {
       <div>
         <label for="storage">Storage</label>
         <input type="text" id="storage" v-model="storage" />
-        GB
+        gigabytes
       </div>
       <div>
         <label for="memory">Memory</label>
         <input type="number" id="memory" v-model="memory" />
-        GB
+        gigabytes
       </div>
       <div>
         <label for="cpu">Processor</label>
@@ -86,17 +80,17 @@ const post = async () => {
       <div>
         <label for="front_cam">Front Camera</label>
         <input type="text" id="front_cam" v-model="front_cam" />
-        MP
+        megapixels
       </div>
       <div>
         <label for="rear_cam">Rear Camera</label>
         <input type="text" id="rear_cam" v-model="rear_cam" />
-        MP
+        megapixels
       </div>
       <div>
         <label for="resolution">Resolution</label>
         <input type="text" id="resolution" v-model="resolution" />
-        MP
+        megapixels
       </div>
       <input type="submit" value="Update" />
     </form>

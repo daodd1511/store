@@ -21,10 +21,9 @@ export const useStore = defineStore("store", {
         .get(`${env.API_URL}/products?category=${category}`)
         .then((response) => (this.allProduct = response.data));
     },
-    async updateProduct(id) {
-      const productData = this.product;
+    async updateProduct(id, data) {
       await axios
-        .put(`${env.API_URL}/update?id=${id}`, productData)
+        .put(`${env.API_URL}/update?id=${id}`, data)
         .then((response) => {
           this.status = response.status;
         });

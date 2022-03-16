@@ -71,7 +71,7 @@ const post = async () => {
       <div>
         <label for="img">Image</label>
         <input required type="text" id="img" v-model="img" />
-        <a href="#" target="blank">Preview</a>
+        <a :href="img" target="blank">Preview</a>
       </div>
       <div>
         <label for="size">Screen Size</label>
@@ -115,7 +115,7 @@ const post = async () => {
         <label for="graphics">Graphics</label>
         <input required type="text" id="graphics" v-model="graphics" />
       </div>
-      <input required type="submit" value="Update" />
+      <input required type="submit" value="Add" />
     </form>
   </div>
 </template>

@@ -92,7 +92,7 @@ const post = async () => {
         <input required type="text" id="resolution" v-model="resolution" />
         megapixels
       </div>
-      <input required type="submit" value="Update" />
+      <input required type="submit" value="Add" />
     </form>
   </div>
 </template>

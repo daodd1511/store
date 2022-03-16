@@ -18,33 +18,87 @@ const getAllLaptop = async () => {
 </script>
 
 <template>
-  <nav>
-    <button @click="getAllLaptop">Laptop</button>
-    <button @click="getAllPhone">Phone</button>
+  <nav class="navbar">
+    <img src="../assets/logo.png" alt="" />
+    <div class="navbar-link">
+      <div @click="getAllLaptop" class="navbar-item">LAPTOP</div>
+      <div @click="getAllPhone" class="navbar-item">PHONE</div>
+    </div>
   </nav>
-  <ul>
-    <li v-for="item in store.allProduct">
-      {{ item._id }} - {{ item.general.name }} - {{ item.general.price }}$
-      <br />
-      <img :src="item.image" alt="Product image" />
-      <router-link :to="`/update?category=${item.category}&id=${item._id}`"
-        ><button>Update</button></router-link
-      >
-      <button @click="store.deleteProduct(item._id, item.category)">
-        Delete
-      </button>
-    </li>
-  </ul>
   <router-link to="/add?category=laptop" v-if="category == 'laptop'"
-    ><button>Add Laptop</button></router-link
+    ><button class="btn">Add Laptop</button></router-link
   >
   <router-link to="/add?category=phone" v-if="category == 'phone'"
-    ><button>Add Phone</button></router-link
+    ><button class="btn">Add Phone</button></router-link
   >
+  <ul class="product-container">
+    <li v-for="item in store.allProduct">
+      <div class="product-img">
+        <img :src="item.image" alt="Product image" />
+      </div>
+      <p class="product-name">{{ item.general.name }}</p>
+      <div class="product-button">
+        <button class="btn">
+          <router-link :to="`/update?category=${item.category}&id=${item._id}`"
+            >Update</router-link
+          >
+        </button>
+        <button
+          @click="store.deleteProduct(item._id, item.category)"
+          class="btn"
+        >
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
 </template>
 
 <style scoped>
 img {
-  max-width: 200px;
+  max-width: 100%;
+}
+.btn {
+  margin: 10px;
+  height: 35px;
+  cursor: pointer;
+}
+.navbar {
+  display: flex;
+  background-color: #131313;
+  height: 80px;
+  color: white;
+  align-items: center;
+  padding: 0 20px;
+}
+.navbar img {
+  height: 70%;
+}
+.navbar-link {
+  display: flex;
+  padding-left: 10%;
+  gap: 40px;
+}
+.navbar-item {
+  cursor: pointer;
+}
+.product-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding: 20px;
+  gap: 20px;
+}
+.product-container li {
+  list-style-type: none;
+}
+.product-name {
+  padding-top: 20px;
+}
+.product-button button {
+  width: 40%;
+}
+.product-button button a {
+  text-decoration: none;
+  color: #111;
 }
 </style>

@@ -38,8 +38,8 @@ const post = async () => {
 };
 </script>
 <template>
-  <h2>Add Phone</h2>
-  <div>
+  <div class="container">
+    <h2>Add Phone</h2>
     <form @submit.prevent="post()">
       <div>
         <label for="name">Name</label>
@@ -57,7 +57,7 @@ const post = async () => {
       <div>
         <label for="img">Image</label>
         <input required type="text" id="img" v-model="img" />
-        <a href="#" target="blank">Preview</a>
+        <a :href="img" target="blank" class="preview">Preview</a>
       </div>
       <div>
         <label for="os">Operating System</label>
@@ -102,7 +102,15 @@ label {
   display: block;
 }
 input {
-  width: 70%;
+  width: 50%;
+  height: 20px;
   margin-bottom: 10px;
+}
+.container {
+  padding: 15px;
+}
+.preview {
+  color: blue;
+  text-decoration: none;
 }
 </style>

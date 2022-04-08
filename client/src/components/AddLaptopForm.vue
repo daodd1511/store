@@ -7,15 +7,10 @@ let name = ref("");
 let brand = ref("");
 let price = ref();
 let img = ref("");
-let size = ref();
-let resolution = ref("");
-let cpu_model = ref("");
+let screen = ref();
 let cpu = ref("");
-let storageType = ref("");
 let storgeCapacity = ref();
-let memoryType = ref("");
 let memoryCapacity = ref();
-let graphicsType = ref("");
 let graphics = ref();
 const post = async () => {
   const productData = {
@@ -26,26 +21,11 @@ const post = async () => {
       price: price.value,
     },
     image: img.value,
-    screen: {
-      size: size.value,
-      resolution: resolution.value,
-    },
-    processor: {
-      model: cpu_model.value,
-      model_number: cpu.value,
-    },
-    storage: {
-      storageType: storageType.value,
-      capacity: storgeCapacity.value,
-    },
-    memory: {
-      memoryType: memoryType.value,
-      capacity: memoryCapacity.value,
-    },
-    graphics: {
-      graphicsType: graphicsType.value,
-      graphics: graphics.value,
-    },
+    screen: screen.value,
+    processor: cpu.value,
+    storage: storgeCapacity.value,
+    memory: memoryCapacity.value,
+    graphics: graphics.value,
   };
   await store.addProduct(productData);
   router.push("/");
@@ -53,7 +33,7 @@ const post = async () => {
 </script>
 <template>
   <div class="container">
-    <h2>Add Laptop</h2>
+    <h1 class="text-2xl">Add Laptop</h1>
     <form @submit.prevent="post()">
       <div>
         <label for="name">Name</label>
@@ -69,29 +49,22 @@ const post = async () => {
         $
       </div>
       <div>
+        <label for="sale_price">Sale Price</label>
+        <input type="text" id="sale_price" v-model="sale_price" />
+        $
+      </div>
+      <div>
         <label for="img">Image</label>
         <input required type="text" id="img" v-model="img" />
         <a :href="img" target="blank" class="preview">Preview</a>
       </div>
       <div>
         <label for="size">Screen Size</label>
-        <input required type="text" id="size" v-model="size" />
-      </div>
-      <div>
-        <label for="resolution">Resolution</label>
-        <input required type="text" id="resolution" v-model="resolution" />
-      </div>
-      <div>
-        <label for="cpu_model">Processor Model</label>
-        <input required type="text" id="cpu_model" v-model="cpu_model" />
+        <input required type="text" id="size" v-model="screen" />
       </div>
       <div>
         <label for="cpu">Processor</label>
         <input required type="text" id="cpu" v-model="cpu" />
-      </div>
-      <div>
-        <label for="storage">Storage</label>
-        <input required type="text" id="storage" v-model="storageType" />
       </div>
       <div>
         <label for="storageCap">Storage Capacity</label>
@@ -99,23 +72,15 @@ const post = async () => {
         gigabytes
       </div>
       <div>
-        <label for="memory">Memory</label>
-        <input required type="text" id="memory" v-model="memoryType" />
-      </div>
-      <div>
         <label for="memory">Memory Capacity</label>
         <input required type="text" id="memory" v-model="memoryCapacity" />
         gigabytes
       </div>
       <div>
-        <label for="graphics_type">Graphics Type</label>
-        <input required type="text" id="graphics_type" v-model="graphicsType" />
-      </div>
-      <div>
         <label for="graphics">Graphics</label>
         <input required type="text" id="graphics" v-model="graphics" />
       </div>
-      <input required type="submit" value="Add" />
+      <input required type="submit" value="Add" class="" />
     </form>
   </div>
 </template>
@@ -126,8 +91,9 @@ label {
 }
 input {
   width: 50%;
-  height: 20px;
+  height: 25px;
   margin-bottom: 10px;
+  border: 1px solid black;
 }
 .container {
   padding: 15px;

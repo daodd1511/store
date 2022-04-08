@@ -6,6 +6,7 @@ const store = useStore();
 const route = useRoute();
 const productData = ref();
 onBeforeMount(async () => {
+  store.status = 0;
   await store.getProductById(route.query.id, route.query.category);
   productData.value = store.product;
 });
@@ -15,7 +16,7 @@ const update = async () => {
 </script>
 <template>
   <div v-if="productData" class="container">
-    <h2>Update Phone</h2>
+    <h1 class="text-2xl">Update Phone</h1>
     <form @submit.prevent="update()">
       <div>
         <label for="name">Name</label>
@@ -50,15 +51,7 @@ const update = async () => {
         <input required type="text" id="img" v-model="productData.image" />
         <a :href="productData.image" target="blank" class="preview">Preview</a>
       </div>
-      <div>
-        <label for="os">Operating System</label>
-        <input
-          required
-          type="text"
-          id="os"
-          v-model="productData.keyspecs.operating_system"
-        />
-      </div>
+
       <div>
         <label for="storage">Storage</label>
         <input
@@ -89,22 +82,12 @@ const update = async () => {
         />
       </div>
       <div>
-        <label for="front_cam">Front Camera</label>
+        <label for="camera">Camera</label>
         <input
           required
           type="text"
-          id="front_cam"
-          v-model="productData.keyspecs.front_camera"
-        />
-        megapixels
-      </div>
-      <div>
-        <label for="rear_cam">Rear Camera</label>
-        <input
-          required
-          type="text"
-          id="rear_cam"
-          v-model="productData.keyspecs.rear_camera"
+          id="camera"
+          v-model="productData.keyspecs.camera"
         />
         megapixels
       </div>
@@ -130,8 +113,9 @@ label {
 }
 input {
   width: 50%;
-  height: 20px;
+  height: 25px;
   margin-bottom: 10px;
+  border: 1px solid black;
 }
 .container {
   padding: 15px;

@@ -5,7 +5,7 @@ const props = defineProps({
 const product = props.data;
 </script>
 <template>
-  <div class="min-h-60 mx-auto flex w-4/5 gap-8 py-7">
+  <div class="min-h-60 mx-auto flex w-4/5 gap-8 border-b border-[#e0e6ef] py-7">
     <!-- Image section -->
     <div class="w-1/3">
       <router-link :to="`/laptop/` + product._id">
@@ -24,13 +24,16 @@ const product = props.data;
     </div>
     <!-- Price section -->
     <div class="h-full w-1/5">
-      <p class="text-2xl font-medium">${{ product.general.price }}</p>
-      <div v-if="product.general.sale_price" class="text-[13px]">
+      <p class="text-2xl font-medium" v-if="!product.general.sale_price">
+        ${{ product.general.price }}
+      </p>
+      <div v-else class="text-[13px]">
+        <p class="text-2xl font-medium">${{ product.general.sale_price }}</p>
         <!-- Discount box -->
         <div class="mr-1 inline-block bg-red-700 p-1 font-medium text-white">
           Save ${{ product.general.price - product.general.sale_price }}
         </div>
-        <span>Was ${{ product.general.sale_price }}</span>
+        <span>Was ${{ product.general.price }}</span>
       </div>
       <!-- Add to cart button -->
       <button class="my-6 h-8 w-full rounded bg-yellow-300 text-sm font-medium">

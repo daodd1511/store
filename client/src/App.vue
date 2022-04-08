@@ -7,10 +7,4 @@
   <router-view></router-view>
 </template>
 
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;500;700&display=swap");
-* {
-  font-family: "Be Vietnam Pro", sans-serif;
-  margin: 0;
-}
-</style>
+<style></style>

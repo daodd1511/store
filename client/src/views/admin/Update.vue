@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute } from "vue-router";
-import UpdateLaptopForm from "../../components/UpdateLaptopForm.vue";
-import UpdatePhoneForm from "../../components/UpdatePhoneForm.vue";
+import UpdateLaptopForm from "../../components/admin/UpdateLaptopForm.vue";
+import UpdatePhoneForm from "../../components/admin/UpdatePhoneForm.vue";
 const route = useRoute();
 </script>
 <template>

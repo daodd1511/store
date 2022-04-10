@@ -10,23 +10,11 @@ const laptopSchema = new Schema(
       sale_price: Number,
     },
     image: { type: String, required: true },
-    screen: {
-      type: Number,
-      required: true,
-    },
-    processor: {
-      type: String,
-      required: true,
-    },
-    storage: {
-      type: Number,
-      required: true,
-    },
+    screen: { type: Number, required: true },
+    processor: { type: String, required: true },
+    storage: { type: Number, required: true },
     memory: { type: Number, required: true },
-    graphics: {
-      type: String,
-      required: true,
-    },
+    graphics: { type: String, required: true },
   },
   { timestamps: true }
 );

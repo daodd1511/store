@@ -8,7 +8,7 @@ const product = props.data;
   <div class="min-h-60 mx-auto flex w-4/5 gap-8 border-b border-[#e0e6ef] py-7">
     <!-- Image section -->
     <div class="w-1/3">
-      <router-link :to="`/laptop/` + product._id">
+      <router-link :to="`/${product.category}/` + product._id">
         <img
           :src="product.image"
           alt="Product Image"
@@ -18,7 +18,7 @@ const product = props.data;
     </div>
     <!-- Content section -->
     <div class="h-full w-2/5 text-blue-600">
-      <router-link :to="`/laptop/` + product._id">{{
+      <router-link :to="`/${product.category}/` + product._id">{{
         product.general.name
       }}</router-link>
     </div>

@@ -2,6 +2,7 @@
 import { onBeforeMount, ref } from "vue";
 import { useStore } from "../../store/store.js";
 import Product from "../../components/Product.vue";
+import Header from "../../components/Header.vue";
 const store = useStore();
 const category = ref("");
 onBeforeMount(async () => {
@@ -18,6 +19,7 @@ const getAllLaptop = async () => {
 };
 </script>
 <template>
+  <Header></Header>
   <Product
     v-for="item in store.allProduct"
     :key="item._id"

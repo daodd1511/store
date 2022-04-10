@@ -1,6 +1,6 @@
 <script setup>
-import AddPhoneForm from "../../components/AddPhoneForm.vue";
-import AddLaptopForm from "../../components/AddLaptopForm.vue";
+import AddPhoneForm from "../../components/admin/AddPhoneForm.vue";
+import AddLaptopForm from "../../components/admin/AddLaptopForm.vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
 </script>

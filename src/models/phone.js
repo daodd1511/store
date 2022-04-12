@@ -7,17 +7,14 @@ const phoneSchema = new Schema(
       name: { type: String, required: true },
       brand: { type: String, required: true },
       price: { type: Number, required: true },
+      sale_price: Number,
     },
     image: { type: String, required: true },
     resolution: { type: String, required: true },
-    keyspecs: {
-      operating_system: { type: String, required: true },
-      storage: { type: Number, required: true },
-      memory: { type: Number, required: true },
-      processor: { type: String, required: true },
-      front_camera: { type: Number, required: true },
-      rear_camera: { type: Number, required: true },
-    },
+    storage: { type: Number, required: true },
+    memory: { type: Number, required: true },
+    processor: { type: String, required: true },
+    camera: { type: Number, required: true },
   },
   { timestamps: true }
 );

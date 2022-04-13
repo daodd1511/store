@@ -7,7 +7,7 @@ const props = defineProps({
 </script>
 <template>
   <div v-if="props.data">
-    <table class="mx-auto w-11/12 table-auto">
+    <table class="w-full table-auto">
       <thead>
         <tr>
           <th>Image</th>

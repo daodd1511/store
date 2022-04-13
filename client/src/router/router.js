@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Laptop from "../views/products/Laptop.vue";
 import Phone from "../views/products/Phone.vue";
-import Add from "../views/admin/Add.vue";
 import AdminHome from "../views/admin/AdminHome.vue";
+import AdminProduct from "../views/admin/AdminProduct.vue";
+import Add from "../views/admin/Add.vue";
 import Update from "../views/admin/Update.vue";
 import ProductDetail from "../views/products/ProductDetail.vue";
 const routes = [
@@ -25,16 +26,23 @@ const routes = [
     path: "/admin",
     name: "Admin Home",
     component: AdminHome,
-  },
-  {
-    path: "/admin/add",
-    name: "Add",
-    component: Add,
-  },
-  {
-    path: "/admin/update",
-    name: "Update",
-    component: Update,
+    children: [
+      {
+        path: "products/:category",
+        name: "Admin Product View",
+        component: AdminProduct,
+      },
+      {
+        path: "add",
+        name: "Add",
+        component: Add,
+      },
+      {
+        path: "update",
+        name: "Update",
+        component: Update,
+      },
+    ],
   },
 ];
 const router = createRouter({

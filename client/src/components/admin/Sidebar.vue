@@ -10,7 +10,7 @@
     </div>
     <div>
       <!-- General -->
-      <p class="p-3 text-xs uppercase text-gray-400">General</p>
+      <!-- <p class="p-3 text-xs uppercase text-gray-400">General</p>
       <ul>
         <li
           class="flex cursor-pointer py-2 hover:bg-gray-600 hover:bg-opacity-50"
@@ -20,7 +20,7 @@
           ></i>
           <span class="grow text-gray-300">Dashboard</span>
         </li>
-      </ul>
+      </ul> -->
       <!-- Products -->
       <p class="p-3 text-xs uppercase text-gray-400">Products</p>
       <ul>

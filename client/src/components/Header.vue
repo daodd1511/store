@@ -1,7 +1,9 @@
 <script setup></script>
 <template>
   <nav class="flex h-20 items-center bg-stone-900 px-5 text-white">
-    <img src="../assets/logo.png" alt="" class="h-3/4" />
+    <router-link to="/"
+      ><img src="../assets/logo.png" alt="" class="h-16"
+    /></router-link>
     <div class="flex gap-10 pl-24">
       <button>
         <router-link to="/laptop">LAPTOP</router-link>

@@ -1,12 +1,17 @@
 <script setup>
 import { onBeforeMount, ref } from "vue";
 import { useStore } from "../../store/store.js";
+import { useRoute } from "vue-router";
 import Sidebar from "../../components/admin/Sidebar.vue";
 const store = useStore();
+const route = useRoute();
 const category = ref("");
 onBeforeMount(async () => {
-  getAllLaptop();
-  // getAllPhone();
+  if (route.params.category == "laptop") {
+    getAllLaptop();
+  } else if (route.params.category == "phone") {
+    getAllPhone();
+  }
 });
 const getAllPhone = async () => {
   category.value = "phone";

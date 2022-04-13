@@ -6,6 +6,7 @@ const store = useStore();
 let name = ref("");
 let brand = ref("");
 let price = ref();
+let sale_price = ref();
 let img = ref("");
 let screen = ref();
 let cpu = ref("");
@@ -19,6 +20,7 @@ const post = async () => {
       name: name.value,
       brand: brand.value,
       price: price.value,
+      sale_price: sale_price.value,
     },
     image: img.value,
     screen: screen.value,

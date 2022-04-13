@@ -14,8 +14,9 @@ app.use(cors());
 app.use(express.json());
 app.use("/api", router);
 app.get("/", (req, res) => {
-  res.send("Hello world!");
+  res.send("Hello from ducdao1511");
 });
-app.listen(process.env.PORT, () => {
-  console.log(`Server is listening on PORT: ${process.env.PORT}`);
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log(`Server is listening on PORT: ${port}`);
 });

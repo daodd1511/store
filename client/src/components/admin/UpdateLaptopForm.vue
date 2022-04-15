@@ -4,11 +4,16 @@ import { useRoute } from "vue-router";
 import { useStore } from "../../store/store.js";
 const store = useStore();
 const route = useRoute();
+const props = defineProps({
+  productId: String,
+});
 const productData = ref();
+
 onBeforeMount(async () => {
   store.status = 0;
-  await store.getProductById(route.query.id, route.query.category);
-  productData.value = store.product;
+  productData.value = store.allProduct.find(
+    (product) => product._id == props.productId
+  );
 });
 const update = async () => {
   await store.updateProduct(route.query.id, productData.value);

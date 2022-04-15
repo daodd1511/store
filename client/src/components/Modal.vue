@@ -7,7 +7,7 @@
       aria-hidden="true"
       class="h-modal fixed top-0 right-0 left-0 z-50 flex w-full items-center justify-center overflow-y-auto overflow-x-hidden bg-black/40 md:inset-0 md:h-full"
     >
-      <div class="relative h-full w-full max-w-2xl p-4 md:h-auto">
+      <div class="relative h-full w-full max-w-lg p-4 md:h-auto">
         <!-- Modal content -->
         <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
           <!-- Modal header -->

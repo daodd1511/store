@@ -10,7 +10,11 @@ const route = useRoute();
       v-if="route.query.category == 'laptop'"
       :productId="route.query.id"
     ></UpdateLaptopForm>
-    <UpdatePhoneForm v-if="route.query.category == 'phone'"> </UpdatePhoneForm>
+    <UpdatePhoneForm
+      v-if="route.query.category == 'phone'"
+      :productId="route.query.id"
+    >
+    </UpdatePhoneForm>
   </div>
 </template>
 

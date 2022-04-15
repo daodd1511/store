@@ -1,59 +1,21 @@
 <script setup>
+import { ref } from "vue";
 import { useStore } from "../../store/store.js";
+import Modal from "../Modal.vue";
 const store = useStore();
 const props = defineProps({
-  data: Object,
+  data: Array,
 });
+const emits = defineEmits(["closeModal"]);
+let isOpenModal = ref(false);
+let productData = ref({});
+const openModal = (id) => {
+  isOpenModal.value = true;
+  productData.value = store.allProduct.find((product) => product._id == id);
+};
 </script>
 <template>
   <div v-if="props.data">
-    <table class="w-full table-auto">
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Sale Price</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="product in props.data" :key="product._id">
-          <td class="w-28">
-            <img :src="product.image" alt="Product Image" class="" />
-          </td>
-          <td>{{ product.general.name }}</td>
-          <td>${{ product.general.price }}</td>
-          <td v-if="product.general.sale_price">
-            ${{ product.general.sale_price }}
-          </td>
-          <td v-else>None</td>
-          <td class="my-auto flex gap-2 text-sm text-white">
-            <router-link
-              :to="
-                '/admin/update?category=' +
-                product.category +
-                '&id=' +
-                product._id
-              "
-            >
-              <button
-                class="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 align-middle"
-              >
-                <i class="fa-solid fa-wrench"></i>
-              </button>
-            </router-link>
-            <button
-              class="flex h-9 w-9 items-center justify-center rounded-lg bg-red-600 align-middle"
-              @click="store.deleteProduct(product._id, product.category)"
-            >
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
     <div class="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
       <div class="p-4">
         <label for="table-search" class="sr-only">Search</label>
@@ -96,6 +58,9 @@ const props = defineProps({
             <th scope="col" class="px-6 py-3">
               <span class="sr-only">Details</span>
             </th>
+            <th scope="col" class="px-6 py-3">
+              <span class="sr-only">Update</span>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -109,7 +74,7 @@ const props = defineProps({
             </td>
             <th
               scope="row"
-              class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+              class="w-1/3 whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
             >
               {{ product.general.name }}
             </th>
@@ -119,17 +84,108 @@ const props = defineProps({
             </td>
             <td class="px-6 py-4" v-else>None</td>
             <td class="px-6 py-4 text-right">
-              <a
-                href="#"
-                class="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                >Details</a
+              <button
+                @click="openModal(product._id)"
+                class="w-1/3 font-medium text-blue-600 hover:underline dark:text-blue-500"
               >
+                Details
+              </button>
+            </td>
+            <td class="text-right text-white">
+              <div class="flex gap-2 px-6 py-4">
+                <router-link
+                  :to="
+                    '/admin/update?category=' +
+                    product.category +
+                    '&id=' +
+                    product._id
+                  "
+                >
+                  <button
+                    class="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 align-middle"
+                  >
+                    <i class="fa-solid fa-wrench"></i>
+                  </button>
+                </router-link>
+                <button
+                  class="flex h-9 w-9 items-center justify-center rounded-lg bg-red-600 align-middle"
+                  @click="store.deleteProduct(product._id, product.category)"
+                >
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+  <Modal v-if="isOpenModal" @closeModal="isOpenModal = false">
+    <template #header> Details </template>
+    <template #content>
+      <div class="mx-auto py-4">
+        <ul>
+          <li class="flex py-2 text-[16px]">
+            <div class="w-1/3 font-medium">Product Name:</div>
+            <div class="">{{ productData.general.name }}</div>
+          </li>
+          <li class="flex py-2 text-[16px]">
+            <div class="w-1/3 font-medium">Brand:</div>
+            <div class="">{{ productData.general.brand }}</div>
+          </li>
+          <li class="flex py-2 text-[16px]">
+            <div class="w-1/3 font-medium">Price:</div>
+            <div class="">${{ productData.general.price }}</div>
+          </li>
+
+          <li class="flex py-2 text-[16px]">
+            <div class="w-1/3 font-medium">Processor:</div>
+            <div class="">{{ productData.processor }}</div>
+          </li>
+          <li class="flex py-2 text-[16px]">
+            <div class="w-1/3 font-medium">Storage:</div>
+            <div class="">{{ productData.storage }} GB</div>
+          </li>
+          <li class="flex py-2 text-[16px]">
+            <div class="w-1/3 font-medium">Memory:</div>
+            <div class="">{{ productData.memory }} GB</div>
+          </li>
+          <!-- Laptop screen -->
+          <li
+            v-if="productData.category == 'laptop'"
+            class="flex py-2 text-[16px]"
+          >
+            <div class="w-1/3 font-medium">Screen:</div>
+            <div class="">{{ productData.screen }}"</div>
+          </li>
+          <!-- Laptop graphics -->
+          <li
+            v-if="productData.category == 'laptop'"
+            class="flex py-2 text-[16px]"
+          >
+            <div class="w-1/3 font-medium">Graphics:</div>
+            <div class="">{{ productData.graphics }}</div>
+          </li>
+          <!-- Phone camera -->
+          <li
+            v-if="productData.category == 'phone'"
+            class="flex py-2 text-[16px]"
+          >
+            <div class="w-1/3 font-medium">Camera</div>
+            <div class="">{{ productData.camera }} MP</div>
+          </li>
+          <!-- Phone resolution -->
+          <li
+            v-if="productData.category == 'phone'"
+            class="flex py-2 text-[16px]"
+          >
+            <div class="w-1/3 font-medium">Resolution</div>
+            <div class="">{{ productData.resolution }}</div>
+          </li>
+        </ul>
+      </div>
+    </template>
+  </Modal>
 </template>
 
 <style scoped></style>

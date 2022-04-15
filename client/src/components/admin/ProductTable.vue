@@ -2,15 +2,17 @@
 import { ref } from "vue";
 import { useStore } from "../../store/store.js";
 import Modal from "../Modal.vue";
+import DeleteModal from "../DeleteModal.vue";
 const store = useStore();
 const props = defineProps({
   data: Array,
 });
 const emits = defineEmits(["closeModal"]);
-let isOpenModal = ref(false);
+let isOpenProductModal = ref(false);
+let isOpenDeleteModal = ref(false);
 let productData = ref({});
-const openModal = (id) => {
-  isOpenModal.value = true;
+const openProductModal = (id) => {
+  isOpenProductModal.value = true;
   productData.value = store.allProduct.find((product) => product._id == id);
 };
 </script>
@@ -85,7 +87,7 @@ const openModal = (id) => {
             <td class="px-6 py-4" v-else>None</td>
             <td class="px-6 py-4 text-right">
               <button
-                @click="openModal(product._id)"
+                @click="openProductModal(product._id)"
                 class="w-1/3 font-medium text-blue-600 hover:underline dark:text-blue-500"
               >
                 Details
@@ -109,7 +111,7 @@ const openModal = (id) => {
                 </router-link>
                 <button
                   class="flex h-9 w-9 items-center justify-center rounded-lg bg-red-600 align-middle"
-                  @click="store.deleteProduct(product._id, product.category)"
+                  @click="isOpenDeleteModal = true"
                 >
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
@@ -120,7 +122,7 @@ const openModal = (id) => {
       </table>
     </div>
   </div>
-  <Modal v-if="isOpenModal" @closeModal="isOpenModal = false">
+  <Modal v-if="isOpenProductModal" @closeModal="isOpenProductModal = false">
     <template #header> Details </template>
     <template #content>
       <div class="mx-auto py-4">
@@ -186,6 +188,22 @@ const openModal = (id) => {
       </div>
     </template>
   </Modal>
+  <DeleteModal v-if="isOpenDeleteModal" @closeModal="isOpenDeleteModal = false">
+    <button
+      type="button"
+      class="mr-2 inline-flex items-center rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:focus:ring-red-800"
+      @click="store.deleteProduct(product._id, product.category)"
+    >
+      Yes, I'm sure
+    </button>
+    <button
+      type="button"
+      class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600"
+      @click="isOpenDeleteModal = false"
+    >
+      No, cancel
+    </button>
+  </DeleteModal>
 </template>
 
 <style scoped></style>

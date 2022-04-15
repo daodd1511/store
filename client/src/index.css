@@ -12,9 +12,6 @@
     @apply h-10 w-32 border-2 border-black px-2 m-3
   }
 }
-table, td, th {
-  border: 1px solid black;
-}
 /* @media (min-width: 1280px){
 body {
   padding-left: 15rem;

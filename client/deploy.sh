@@ -10,6 +10,7 @@ npm run build
 # cp 404.html dist
 # navigate into the build output directory
 cp 404.html dist
+cp _redirects dist
 cd dist
 
 # if you are deploying to a custom domain

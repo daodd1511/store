@@ -4,7 +4,7 @@ import axios from "axios";
 export const useStore = defineStore("store", {
   state: () => {
     return {
-      allProduct: {},
+      allProduct: [],
       product: {},
       status: 0,
     };
@@ -36,6 +36,7 @@ export const useStore = defineStore("store", {
           this.status = response.status;
         });
     },
+    // Optional - Get product from server
     async getProductById(id, category) {
       await axios
         .get(`${env.API_URL}/find/?category=${category}&id=${id}`)

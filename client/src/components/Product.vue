@@ -18,9 +18,13 @@ const product = props.data;
     </div>
     <!-- Content section -->
     <div class="h-full w-2/5 text-blue-600">
-      <router-link :to="`/${product.category}/` + product._id">{{
-        product.general.name
-      }}</router-link>
+      <router-link :to="`/${product.category}/` + product._id"
+        >{{ product.general.name }}
+        <span v-if="product.category == 'laptop'">
+          - {{ product.processor }} - {{ product.memory }}GB memory -
+          {{ product.storage }}GB SSD</span
+        >
+      </router-link>
     </div>
     <!-- Price section -->
     <div class="h-full w-1/5">

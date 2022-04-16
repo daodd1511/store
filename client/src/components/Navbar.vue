@@ -49,26 +49,26 @@ let isOpenMenu = ref(false);
         >
           <li>
             <router-link
-              to="/laptop"
+              to="/laptops"
               class="block rounded py-2 pr-4 pl-3 hover:text-white md:border-0 md:bg-transparent md:p-0 md:hover:bg-transparent"
               :class="
-                route.path === '/laptop'
+                route.path === '/laptops'
                   ? 'bg-blue-700 text-white'
                   : 'text-gray-400 hover:bg-gray-700'
               "
-              >Laptop</router-link
+              >Laptops</router-link
             >
           </li>
           <li>
             <router-link
-              to="/phone"
+              to="/phones"
               class="block rounded py-2 pr-4 pl-3 hover:text-white md:border-0 md:bg-transparent md:p-0 md:hover:bg-transparent"
               :class="
-                route.path === '/phone'
+                route.path === '/phones'
                   ? 'bg-blue-700 text-white'
                   : 'text-gray-400 hover:bg-gray-700'
               "
-              >Phone</router-link
+              >Phones</router-link
             >
           </li>
         </ul>

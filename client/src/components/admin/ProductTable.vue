@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useStore } from "../../store/store.js";
 import Modal from "../Modal.vue";
 import DeleteModal from "../DeleteModal.vue";
+import Spinner from "../Spinner.vue";
 const store = useStore();
 const props = defineProps({
   data: Array,
@@ -17,7 +18,10 @@ const openProductModal = (id) => {
 };
 </script>
 <template>
-  <div v-if="props.data">
+  <div v-if="!props.data">
+    <Spinner></Spinner>
+  </div>
+  <div v-else>
     <div class="relative w-full overflow-x-auto shadow-md sm:rounded-lg">
       <table
         class="w-full text-left text-[15px] text-gray-500 dark:text-gray-400"

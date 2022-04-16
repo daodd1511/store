@@ -20,7 +20,7 @@ const update = async () => {
 </script>
 <template>
   <div v-if="productData" class="container">
-    <h1 class="text-2xl">Update Phone</h1>
+    <h1 class="pb-4 text-2xl">Update Phone</h1>
     <form @submit.prevent="update()">
       <div>
         <label for="name">Name</label>
@@ -104,21 +104,27 @@ const update = async () => {
         />
         megapixels
       </div>
-      <input required type="submit" value="Update" />
+      <button type="submit">Update</button>
     </form>
     <p v-if="store.status == 200">Success!</p>
   </div>
 </template>
 
 <style scoped>
-label {
-  display: block;
-}
-input {
-  width: 50%;
-  height: 25px;
-  margin-bottom: 10px;
-  border: 1px solid black;
+@tailwind components;
+@layer components {
+  label {
+    @apply mb-1 block text-sm font-medium text-gray-900;
+  }
+  input {
+    @apply mr-2 w-3/4 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900  focus:outline-none focus:ring-2 focus:ring-blue-400;
+  }
+  form div {
+    @apply mb-4;
+  }
+  form button {
+    @apply h-10 w-28 rounded-md bg-blue-600 text-white;
+  }
 }
 .container {
   padding: 15px;

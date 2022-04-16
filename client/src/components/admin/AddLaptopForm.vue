@@ -30,12 +30,12 @@ const post = async () => {
     graphics: graphics.value,
   };
   await store.addProduct(productData);
-  router.push("/");
+  router.push("/admin/products/laptop");
 };
 </script>
 <template>
   <div class="container">
-    <h1 class="text-2xl">Add Laptop</h1>
+    <h1 class="pb-4 text-2xl">Add Laptop</h1>
     <form @submit.prevent="post()">
       <div>
         <label for="name">Name</label>
@@ -82,20 +82,26 @@ const post = async () => {
         <label for="graphics">Graphics</label>
         <input required type="text" id="graphics" v-model="graphics" />
       </div>
-      <input required type="submit" value="Add" class="" />
+      <button type="submit">Add</button>
     </form>
   </div>
 </template>
 
 <style scoped>
-label {
-  display: block;
-}
-input {
-  width: 50%;
-  height: 25px;
-  margin-bottom: 10px;
-  border: 1px solid black;
+@tailwind components;
+@layer components {
+  label {
+    @apply mb-1 block text-sm font-medium text-gray-900;
+  }
+  input {
+    @apply mr-2 w-3/4 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900  focus:outline-none focus:ring-2 focus:ring-blue-400;
+  }
+  form div {
+    @apply mb-4;
+  }
+  form button {
+    @apply h-10 w-28 rounded-md bg-blue-600 text-white;
+  }
 }
 .container {
   padding: 15px;

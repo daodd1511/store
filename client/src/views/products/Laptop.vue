@@ -3,6 +3,7 @@ import { onBeforeMount, ref, computed } from "vue";
 import { useStore } from "../../store/store.js";
 import Product from "../../components/Product.vue";
 import Navbar from "../../components/Navbar.vue";
+import Spinner from "../../components/Spinner.vue";
 const store = useStore();
 const category = ref("");
 onBeforeMount(async () => {
@@ -44,6 +45,9 @@ const filteredData = computed(() => {
       v-model="store.filterText"
     />
   </Navbar>
+  <div v-if="!filteredData">
+    <Spinner></Spinner>
+  </div>
   <Product v-for="item in filteredData" :key="item._id" :data="item"></Product>
 </template>
 

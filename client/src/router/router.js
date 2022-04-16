@@ -16,12 +16,12 @@ const routes = [
     component: Home,
   },
   {
-    path: "/laptop",
+    path: "/laptops",
     name: "Laptop",
     component: Laptop,
   },
   {
-    path: "/phone",
+    path: "/phones",
     name: "Phone",
     component: Phone,
   },

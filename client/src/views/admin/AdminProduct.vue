@@ -15,6 +15,10 @@ const filteredData = computed(() => {
 </script>
 <template>
   <div class="mx-auto w-10/12">
+    <!-- Heading -->
+    <h1 class="text-2xl font-medium capitalize">
+      {{ route.params.category }}s
+    </h1>
     <div class="flex items-center justify-between py-4">
       <!-- Search section -->
       <label for="table-search" class="sr-only">Search</label>
@@ -51,6 +55,7 @@ const filteredData = computed(() => {
         </button>
       </router-link>
     </div>
+    <!-- Product table   -->
     <ProductTable :data="filteredData"></ProductTable>
   </div>
 </template>

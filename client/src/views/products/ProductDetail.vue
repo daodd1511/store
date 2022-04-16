@@ -2,7 +2,7 @@
 import { ref, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "../../store/store.js";
-import Header from "../../components/Header.vue";
+import Navbar from "../../components/Navbar.vue";
 const store = useStore();
 const route = useRoute();
 const productData = ref();
@@ -12,7 +12,7 @@ onBeforeMount(async () => {
 });
 </script>
 <template>
-  <Header></Header>
+  <Navbar></Navbar>
   <div class="mx-auto flex w-4/5 gap-14 py-7">
     <!-- Name and image section -->
     <div class="w-2/3 font-medium">

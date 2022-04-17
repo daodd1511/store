@@ -18,6 +18,7 @@ export const useStore = defineStore("store", {
         .catch((error) => console.error(error));
     },
     async getAllProducts(category) {
+      this.allProduct = [];
       await axios
         .get(`${env.API_URL}/products?category=${category}`)
         .then((response) => (this.allProduct = response.data));

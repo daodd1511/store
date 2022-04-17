@@ -6,6 +6,7 @@ import ProductTable from "../../components/admin/ProductTable.vue";
 const route = useRoute();
 const store = useStore();
 const category = ref("");
+// Getting data when component is renderd
 onBeforeMount(async () => {
   if (route.params.category == "laptop") {
     getAllLaptop();
@@ -13,6 +14,7 @@ onBeforeMount(async () => {
     getAllPhone();
   }
 });
+// Watch route change to get data when using history mode
 watch(
   () => route.params,
   (toParams, previousParams) => {

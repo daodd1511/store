@@ -1,10 +1,36 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onBeforeMount, watch } from "vue";
 import { useStore } from "../../store/store.js";
 import { useRoute } from "vue-router";
 import ProductTable from "../../components/admin/ProductTable.vue";
 const route = useRoute();
 const store = useStore();
+const category = ref("");
+onBeforeMount(async () => {
+  if (route.params.category == "laptop") {
+    getAllLaptop();
+  } else if (route.params.category == "phone") {
+    getAllPhone();
+  }
+});
+watch(
+  () => route.params,
+  (toParams, previousParams) => {
+    if (toParams.category == "laptop") {
+      getAllLaptop();
+    } else if (toParams.category == "phone") {
+      getAllPhone();
+    }
+  }
+);
+const getAllPhone = async () => {
+  category.value = "phone";
+  await store.getAllProducts(category.value);
+};
+const getAllLaptop = async () => {
+  category.value = "laptop";
+  await store.getAllProducts(category.value);
+};
 let filteredText = ref("");
 const filteredData = computed(() => {
   let filter = new RegExp(filteredText.value, "i");

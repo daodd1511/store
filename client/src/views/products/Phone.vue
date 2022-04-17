@@ -45,7 +45,7 @@ const filteredData = computed(() => {
       v-model="store.filterText"
     />
   </Navbar>
-  <div v-if="!filteredData">
+  <div v-if="filteredData.length == 0">
     <Spinner></Spinner>
   </div>
   <div v-else>

@@ -45,10 +45,16 @@ const filteredData = computed(() => {
       v-model="store.filterText"
     />
   </Navbar>
-  <div v-if="!filteredData">
+  <div v-if="filteredData.length == 0">
     <Spinner></Spinner>
   </div>
-  <Product v-for="item in filteredData" :key="item._id" :data="item"></Product>
+  <div v-else>
+    <Product
+      v-for="item in filteredData"
+      :key="item._id"
+      :data="item"
+    ></Product>
+  </div>
 </template>
 
 <style scoped></style>

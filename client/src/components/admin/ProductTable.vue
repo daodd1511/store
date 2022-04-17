@@ -18,7 +18,7 @@ const openProductModal = (id) => {
 };
 </script>
 <template>
-  <div v-if="!props.data">
+  <div v-if="props.data.length == 0">
     <Spinner></Spinner>
   </div>
   <div v-else>

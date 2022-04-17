@@ -1,6 +1,6 @@
 <script setup></script>
 <template>
-  <div class="flex h-[80vh] items-center justify-center">
+  <div class="flex h-[83vh] items-center justify-center">
     <svg
       role="status"
       class="mr-2 inline h-10 w-10 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"

@@ -5,7 +5,7 @@
       class="flex h-14 w-full flex-1 flex-row items-center bg-gray-900 text-white dark:bg-transparent"
     >
       <div class="flex-1 px-3">
-        <span>Admin</span>
+        <span @click="$emit('home')" class="cursor-pointer">Admin</span>
       </div>
     </div>
     <div>

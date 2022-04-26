@@ -7,7 +7,7 @@ const route = useRoute();
 let isOpenMenu = ref(false);
 </script>
 <template>
-  <nav class="border-gray-200 bg-gray-800 px-2 py-4 sm:px-4">
+  <nav class="fixed w-full border-gray-200 bg-gray-800 px-2 py-4 sm:px-4">
     <div class="container mx-auto flex flex-wrap items-center justify-between">
       <router-link to="/" class="flex items-center"
         ><img src="../assets/logo.png" alt="" class="mr-3 h-6 sm:h-9" />

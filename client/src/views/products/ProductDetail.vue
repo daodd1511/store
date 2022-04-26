@@ -17,34 +17,43 @@ onBeforeMount(async () => {
   <div v-if="!productData">
     <Spinner></Spinner>
   </div>
-  <div v-else>
-    <div class="mx-auto flex w-4/5 gap-14 py-7">
+  <div v-else class="mx-auto w-11/12 pt-20 sm:w-4/5">
+    <div class="flex w-full flex-col py-7 sm:flex-row sm:gap-14">
       <!-- Name and image section -->
-      <div class="w-2/3 font-medium">
+      <div class="w-full font-medium sm:w-2/3">
         <h2>{{ productData.general.brand }}</h2>
         <h1 class="text-2xl font-light">{{ productData.general.name }}</h1>
         <img :src="productData.image" class="py-12" />
       </div>
       <!-- Price and add to cart section -->
-      <div class="w-1/3 pt-6">
-        <p class="text-2xl font-medium" v-if="!productData.general.sale_price">
+      <div class="h-full w-full sm:w-1/4">
+        <p
+          class="text-3xl font-medium sm:text-2xl"
+          v-if="!productData.general.sale_price"
+        >
           ${{ productData.general.price }}
         </p>
-        <div v-else class="text-[13px]">
-          <p class="text-2xl font-medium">
+        <div v-else class="w-full items-center text-sm sm:text-[13px]">
+          <p
+            class="mr-6 inline-block text-3xl font-medium sm:mr-2 sm:block sm:text-2xl"
+          >
             ${{ productData.general.sale_price }}
           </p>
           <!-- Discount box -->
-          <div class="mr-1 inline-block bg-red-700 p-1 font-medium text-white">
-            Save ${{
-              productData.general.price - productData.general.sale_price
-            }}
+          <div>
+            <div
+              class="mr-1 inline-block w-fit rounded bg-red-700 p-1 font-medium text-white"
+            >
+              Save ${{
+                productData.general.price - productData.general.sale_price
+              }}
+            </div>
+            <span>Was ${{ productData.general.price }}</span>
           </div>
-          <span>Was ${{ productData.general.price }}</span>
         </div>
         <!-- Add to cart button -->
         <button
-          class="my-6 h-8 w-full rounded bg-yellow-300 text-sm font-medium"
+          class="my-6 h-12 w-full items-center rounded bg-yellow-300 text-center text-lg font-medium sm:h-8 sm:text-sm"
         >
           <i class="fa-solid fa-cart-shopping p-2"></i>
           Add to cart
@@ -52,12 +61,12 @@ onBeforeMount(async () => {
       </div>
     </div>
     <!-- Specification -->
-    <div class="mx-auto w-4/5">
+    <div class="w-full">
       <button class="flex w-full justify-between text-2xl font-medium">
         <span>Specifications</span>
         <i class="fa-solid fa-angle-down"></i>
       </button>
-      <div class="mx-auto w-2/3 py-4">
+      <div class="mx-auto w-11/12 py-4 sm:w-2/3">
         <ul>
           <li class="flex py-2 text-[16px]">
             <div class="w-1/2 font-medium">Product Name</div>

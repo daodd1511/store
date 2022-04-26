@@ -48,7 +48,7 @@ const filteredData = computed(() => {
   <div v-if="filteredData.length == 0">
     <Spinner></Spinner>
   </div>
-  <div v-else>
+  <div v-else class="pt-20">
     <Product
       v-for="item in filteredData"
       :key="item._id"

@@ -7,7 +7,9 @@ const route = useRoute();
 let isOpenMenu = ref(false);
 </script>
 <template>
-  <nav class="fixed w-full border-gray-200 bg-gray-800 px-2 py-4 sm:px-4">
+  <nav
+    class="fixed z-50 w-full border-gray-200 bg-gray-800 px-2 py-4 sm:pr-32 sm:pl-4"
+  >
     <div class="container mx-auto flex flex-wrap items-center justify-between">
       <router-link to="/" class="flex items-center"
         ><img src="../assets/logo.png" alt="" class="mr-3 h-6 sm:h-9" />
@@ -18,8 +20,10 @@ let isOpenMenu = ref(false);
       </router-link>
       <div class="flex md:order-2">
         <div class="relative mr-3 hidden md:mr-0 md:block">
+          <!-- Slot for search section -->
           <slot></slot>
         </div>
+        <!-- Mobile burger -->
         <button
           type="button"
           class="ml-3 inline-flex items-center rounded-lg p-2 text-sm text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 md:hidden"
@@ -74,6 +78,18 @@ let isOpenMenu = ref(false);
         </ul>
       </div>
     </div>
+    <!-- Cart -->
+    <router-link to="/cart">
+      <div class="absolute right-10 top-5 cursor-pointer text-3xl">
+        <i class="fa-solid fa-cart-shopping text-white"></i>
+        <div
+          v-if="store.cartCount != 0"
+          class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-yellow-300 text-center text-[13px]"
+        >
+          <span>{{ store.cartCount }}</span>
+        </div>
+      </div>
+    </router-link>
   </nav>
 </template>
 

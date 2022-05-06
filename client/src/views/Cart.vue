@@ -1,0 +1,59 @@
+<script setup>
+import Navbar from "../components/Navbar.vue";
+import CartItem from "../components/CartItem.vue";
+import { useStore } from "../store/store.js";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const store = useStore();
+</script>
+<template>
+  <Navbar></Navbar>
+  <div class="flex pt-20">
+    <div class="w-2/3 p-4 pl-10">
+      <CartItem
+        v-for="(item, index) in store.cart"
+        :product="item"
+        :index="index"
+        :key="item._id"
+      ></CartItem>
+    </div>
+    <!-- Summary -->
+    <div class="fixed right-0 h-fit w-1/3 items-center px-10 text-center">
+      <!-- Header -->
+      <h1 class="border-b border-[#cbd1d9] py-2 text-2xl font-medium">
+        Order Summary
+      </h1>
+      <!-- Price -->
+      <ul v-if="store.cart.length != 0" class="border-b border-[#cbd1d9] py-2">
+        <li class="flex justify-between">
+          <span>Original Price</span>
+          <span>${{ store.originalPrice }}</span>
+        </li>
+        <li class="flex justify-between">
+          <span>Savings</span>
+          <span>${{ store.saving }}</span>
+        </li>
+        <li class="flex justify-between">
+          <span>Shipping</span>
+          <span>FREE</span>
+        </li>
+      </ul>
+      <!-- Total -->
+      <div class="flex justify-between py-2 text-lg font-medium">
+        <h2>Total</h2>
+        <span>${{ store.originalPrice - store.saving }}</span>
+      </div>
+      <!-- Checkout button -->
+      <button
+        class="text-md my-6 h-12 w-full items-center rounded text-center font-medium"
+        :class="store.cart.length ? 'bg-yellow-300' : 'bg-blue-700 text-white'"
+        @click="store.cart.length ? checkout() : router.replace('/')"
+      >
+        <span v-if="store.cart.length">Checkout</span>
+        <span v-else>Shopping</span>
+      </button>
+    </div>
+  </div>
+</template>
+
+<style scoped></style>

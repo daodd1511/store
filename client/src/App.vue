@@ -5,8 +5,14 @@ const route = useRoute();
 </script>
 
 <template>
-  <router-view></router-view>
+  <main class="main">
+    <router-view></router-view>
+  </main>
   <Footer v-if="route.path != '/'"></Footer>
 </template>
 
-<style></style>
+<style>
+.main {
+  min-height: 92vh;
+}
+</style>

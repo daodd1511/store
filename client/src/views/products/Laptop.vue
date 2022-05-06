@@ -13,12 +13,28 @@ const getAllLaptop = async () => {
   category.value = "laptop";
   await store.getAllProducts(category.value);
 };
+// Search only name
 const filteredData = computed(() => {
   let filter = new RegExp(store.filterText, "i");
-  return store.allProduct.filter((product) =>
-    product.general.name.match(filter)
-  );
+  return store.allProduct.filter((product) => {
+    return product.general.name.match(filter);
+  });
 });
+// Search by display name
+// const filteredData = computed(() => {
+//   let filter = new RegExp(store.filterText, "i");
+//   return store.allProduct.filter((product) => {
+//     if (product.category === "laptop") {
+//       let productSearchKeyword =
+//         product.general.name +
+//         product.processor +
+//         product.memory +
+//         product.storage;
+//       return productSearchKeyword.match(filter);
+//     }
+//     return product.general.name.match(filter);
+//   });
+// });
 </script>
 <template>
   <Navbar>

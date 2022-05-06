@@ -8,7 +8,31 @@ export const useStore = defineStore("store", {
       filterText: "",
       product: {},
       status: 0,
+      cart: [],
     };
+  },
+  getters: {
+    cartCount: (state) => {
+      return state.cart.length;
+    },
+    originalPrice: (state) => {
+      let price = 0;
+      state.cart.forEach((item) => {
+        price += item.general.price;
+      });
+      return price;
+    },
+    saving: (state) => {
+      let saving = 0;
+      let sale_price = 0;
+      state.cart.forEach((item) => {
+        sale_price = item.general.sale_price
+          ? item.general.sale_price
+          : item.general.price;
+        saving += item.general.price - sale_price;
+      });
+      return saving;
+    },
   },
   actions: {
     async addProduct(productData) {
@@ -46,6 +70,12 @@ export const useStore = defineStore("store", {
           this.product = {};
           this.product = response.data;
         });
+    },
+    addToCart(product) {
+      this.cart.push(product);
+    },
+    removeFromCart(i) {
+      this.cart = this.cart.filter((item, index) => index !== i);
     },
   },
 });

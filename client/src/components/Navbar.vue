@@ -8,7 +8,7 @@ let isOpenMenu = ref(false);
 </script>
 <template>
   <nav
-    class="fixed z-50 w-full border-gray-200 bg-gray-800 px-2 py-4 sm:pr-32 sm:pl-4"
+    class="fixed z-50 w-full border-gray-200 bg-gray-800 px-2 py-4 sm:pl-4 md:pr-32"
   >
     <div class="container mx-auto flex flex-wrap items-center justify-between">
       <router-link to="/" class="flex items-center"
@@ -54,7 +54,7 @@ let isOpenMenu = ref(false);
           <li>
             <router-link
               to="/laptops"
-              class="block rounded py-2 pr-4 pl-3 hover:text-white md:border-0 md:bg-transparent md:p-0 md:hover:bg-transparent"
+              class="block rounded py-3 pr-4 pl-3 text-lg hover:text-white md:border-0 md:bg-transparent md:p-0 md:hover:bg-transparent"
               :class="
                 route.path === '/laptops'
                   ? 'bg-blue-700 text-white'
@@ -66,7 +66,7 @@ let isOpenMenu = ref(false);
           <li>
             <router-link
               to="/phones"
-              class="block rounded py-2 pr-4 pl-3 hover:text-white md:border-0 md:bg-transparent md:p-0 md:hover:bg-transparent"
+              class="block rounded py-3 pr-4 pl-3 text-lg hover:text-white md:border-0 md:bg-transparent md:p-0 md:hover:bg-transparent"
               :class="
                 route.path === '/phones'
                   ? 'bg-blue-700 text-white'
@@ -76,10 +76,24 @@ let isOpenMenu = ref(false);
             >
           </li>
         </ul>
+        <!-- Mobile cart button -->
+        <router-link to="/cart" class="md:hidden">
+          <button
+            class="text-md mt-6 flex h-12 w-full items-center justify-center gap-2 rounded bg-yellow-300 text-center font-medium"
+          >
+            <p>View cart</p>
+            <div
+              v-if="store.cartCount"
+              class="flex h-6 w-6 items-center justify-center rounded-full bg-red-600 text-center text-[13px] text-white"
+            >
+              <span>{{ store.cartCount }}</span>
+            </div>
+          </button>
+        </router-link>
       </div>
     </div>
     <!-- Cart -->
-    <router-link to="/cart">
+    <router-link to="/cart" class="hidden md:block">
       <div class="absolute right-10 top-5 cursor-pointer text-3xl">
         <i class="fa-solid fa-cart-shopping text-white"></i>
         <div

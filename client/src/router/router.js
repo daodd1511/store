@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import Cart from "../views/Cart.vue";
 // Import product views
 import Laptop from "../views/products/Laptop.vue";
 import Phone from "../views/products/Phone.vue";
@@ -30,6 +31,12 @@ const routes = [
     name: "Product Detail",
     component: ProductDetail,
   },
+  {
+    path: "/cart",
+    name: "Cart",
+    component: Cart,
+  },
+  // Admin route
   {
     path: "/admin",
     name: "Admin Home",

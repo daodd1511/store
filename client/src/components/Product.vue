@@ -1,4 +1,6 @@
 <script setup>
+import { useStore } from "../store/store";
+const store = useStore();
 const props = defineProps({
   data: Object,
 });
@@ -55,6 +57,7 @@ const product = props.data;
       <!-- Add to cart button -->
       <button
         class="my-6 h-12 w-full items-center rounded bg-yellow-300 text-center text-lg font-medium sm:h-8 sm:text-sm"
+        @click="store.addToCart(product)"
       >
         <i class="fa-solid fa-cart-shopping p-2"></i>
         Add to cart

@@ -53,7 +53,7 @@ let product = props.product;
     <div>
       <button
         class="flex h-9 w-9 items-center justify-center rounded-lg bg-red-600 align-middle text-white"
-        @click="store.removeFromCart(props.index)"
+        @click="store.removeFromCart(props.index), $emit('delete')"
       >
         <i class="fa-solid fa-trash-can"></i>
       </button>

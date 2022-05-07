@@ -8,7 +8,7 @@ let isOpenMenu = ref(false);
 </script>
 <template>
   <nav
-    class="fixed z-50 w-full border-gray-200 bg-gray-800 px-2 py-4 sm:pl-4 md:pr-32"
+    class="fixed z-40 w-full border-gray-200 bg-gray-800 px-2 py-4 sm:pl-4 md:pr-32"
   >
     <div class="container mx-auto flex flex-wrap items-center justify-between">
       <router-link to="/" class="flex items-center"

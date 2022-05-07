@@ -1,10 +1,25 @@
 <script setup>
-import Navbar from "../components/Navbar.vue";
-import CartItem from "../components/CartItem.vue";
+import { ref } from "vue";
 import { useStore } from "../store/store.js";
 import { useRouter } from "vue-router";
+import Navbar from "../components/Navbar.vue";
+import CartItem from "../components/CartItem.vue";
+import Toast from "../components/Toast.vue";
+
 const router = useRouter();
 const store = useStore();
+const toastMessages = ref([]);
+const renderToast = (id, name) => {
+  toastMessages.value.push({
+    id: id,
+    name: name,
+  });
+};
+const closeToast = (i) => {
+  toastMessages.value = toastMessages.value.filter(
+    (toast, index) => index !== i
+  );
+};
 </script>
 <template>
   <Navbar></Navbar>
@@ -15,6 +30,7 @@ const store = useStore();
         :product="item"
         :index="index"
         :key="item._id"
+        @delete="renderToast(item._id, item.general.name)"
       ></CartItem>
     </div>
     <!-- Summary -->
@@ -53,6 +69,16 @@ const store = useStore();
         <span v-else>Shopping</span>
       </button>
     </div>
+  </div>
+  <!-- Toast message -->
+  <div class="fixed top-0 right-0 z-50 p-5">
+    <Toast
+      v-for="(toast, index) in toastMessages"
+      :key="toast.id"
+      @closeToast="closeToast(index)"
+    >
+      {{ toast.name }} has been deleted.
+    </Toast>
   </div>
 </template>
 

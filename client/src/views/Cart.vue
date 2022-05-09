@@ -93,7 +93,7 @@ const closeToast = (i) => {
     </div>
   </div>
   <!-- Toast message -->
-  <div class="fixed top-0 right-0 z-50 p-5">
+  <div class="fixed top-14 right-0 z-50 p-5">
     <Toast
       v-for="(toast, index) in toastMessages"
       :key="toast.id"

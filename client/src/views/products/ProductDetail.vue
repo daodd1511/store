@@ -42,7 +42,7 @@ onBeforeMount(async () => {
           <!-- Discount box -->
           <div>
             <div
-              class="mr-1 inline-block w-fit rounded bg-red-700 p-1 font-medium text-white"
+              class="mr-1 inline-block w-fit rounded bg-green-700 p-1 font-medium text-white"
             >
               Save ${{ product.general.price - product.general.sale_price }}
             </div>

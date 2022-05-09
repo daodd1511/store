@@ -26,12 +26,12 @@ let isOpenMenu = ref(false);
         <!-- Mobile burger -->
         <button
           type="button"
-          class="ml-3 inline-flex items-center rounded-lg p-2 text-sm text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 md:hidden"
+          class="relative ml-3 inline-flex items-center rounded-lg p-1 text-sm text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 md:hidden"
           @click="isOpenMenu = !isOpenMenu"
         >
           <span class="sr-only">Open main menu</span>
           <svg
-            class="h-6 w-6"
+            class="h-8 w-8"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -42,6 +42,12 @@ let isOpenMenu = ref(false);
               clip-rule="evenodd"
             ></path>
           </svg>
+          <div
+            v-if="store.cartCount && !isOpenMenu"
+            class="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-red-600 text-center text-[13px] text-white"
+          >
+            <span>{{ store.cartCount }}</span>
+          </div>
         </button>
       </div>
       <div
@@ -76,7 +82,7 @@ let isOpenMenu = ref(false);
             >
           </li>
         </ul>
-        <!-- Mobile cart button -->
+        <!-- Go to cart button for mobile devices -->
         <router-link to="/cart" class="md:hidden">
           <button
             class="text-md mt-6 flex h-12 w-full items-center justify-center gap-2 rounded bg-yellow-300 text-center font-medium"

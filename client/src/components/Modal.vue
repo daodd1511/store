@@ -5,11 +5,15 @@
       id="defaultModal"
       tabindex="-1"
       aria-hidden="true"
-      class="h-modal fixed top-0 right-0 left-0 z-50 flex w-full items-center justify-center overflow-y-auto overflow-x-hidden bg-black/40 md:inset-0 md:h-full"
+      class="h-modal fixed top-0 right-0 left-0 bottom-0 z-50 flex w-full items-center justify-center overflow-y-auto overflow-x-hidden bg-black/40 md:inset-0 md:h-full"
     >
-      <div class="relative h-full w-full max-w-lg p-4 md:h-auto">
+      <div
+        class="relative flex h-full w-full max-w-lg items-center p-4 md:h-auto"
+      >
         <!-- Modal content -->
-        <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+        <div
+          class="relative w-full rounded-lg bg-white shadow dark:bg-gray-700"
+        >
           <!-- Modal header -->
           <div
             class="flex items-start justify-between rounded-t border-b p-5 dark:border-gray-600"

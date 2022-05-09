@@ -57,7 +57,7 @@ let openMenu = ref(false);
         <router-link to="/admin/products/laptop">
           <li
             class="flex cursor-pointer py-2 hover:bg-gray-600 hover:bg-opacity-50"
-            @click="$emit('laptop')"
+            @click="$emit('laptop'), (openMenu = false)"
           >
             <i
               class="fa-solid fa-laptop inline-flex h-6 w-12 flex-none items-center justify-center text-gray-300"
@@ -72,7 +72,7 @@ let openMenu = ref(false);
         <router-link to="/admin/products/phone">
           <li
             class="flex cursor-pointer py-2 hover:bg-gray-600 hover:bg-opacity-50"
-            @click="$emit('phone')"
+            @click="$emit('phone'), (openMenu = false)"
           >
             <i
               class="fa-solid fa-mobile-screen inline-flex h-6 w-12 flex-none items-center justify-center text-gray-300"

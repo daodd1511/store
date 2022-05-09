@@ -20,6 +20,9 @@ const closeToast = (i) => {
     (toast, index) => index !== i
   );
 };
+const checkout = () => {
+  window.alert("This feature is under development. Please comeback later");
+};
 // Try to watch toast messages when add new. then close the first index, the code below just only watch the toast messages when remove, not when add.
 // Experimental
 // watch(toastMessages.value, (messages) => {

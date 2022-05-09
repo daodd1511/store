@@ -47,7 +47,7 @@ const filteredData = computed(() => {
     <h1 class="text-2xl font-medium capitalize">
       {{ route.params.category }}s
     </h1>
-    <div class="flex items-center justify-between py-4">
+    <div class="relative items-center justify-between py-4 md:flex">
       <!-- Search section -->
       <label for="table-search" class="sr-only">Search</label>
       <div class="relative mt-1">
@@ -70,14 +70,16 @@ const filteredData = computed(() => {
         <input
           type="text"
           id="table-search"
-          class="block w-80 rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 md:w-80"
           placeholder="Search for items"
           v-model="filteredText"
         />
       </div>
       <!-- Add button -->
       <router-link :to="'/admin/add?category=' + route.params.category">
-        <button class="float-right h-8 rounded-md bg-blue-600 px-4 text-white">
+        <button
+          class="absolute -top-[32px] right-0 float-right h-8 rounded-md bg-blue-600 px-4 text-white md:static"
+        >
           <i class="fa-solid fa-plus"></i>
           Add
         </button>

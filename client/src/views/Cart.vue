@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useStore } from "../store/store.js";
 import { useRouter } from "vue-router";
 import Navbar from "../components/Navbar.vue";
@@ -20,11 +20,26 @@ const closeToast = (i) => {
     (toast, index) => index !== i
   );
 };
+// Try to watch toast messages when add new. then close the first index, the code below just only watch the toast messages when remove, not when add.
+// Experimental
+// watch(toastMessages.value, (messages) => {
+//   console.log(messages);
+//   if (messages.length > 0) {
+//     setTimeout(() => toastMessages.value.shift(), 5000);
+//   }
+// });
+// onMounted(() => {
+//   setInterval(() => {
+//     if (toastMessages.value.length != 0) {
+//       closeToast(0);
+//     }
+//   }, 2000);
+// });
 </script>
 <template>
   <Navbar></Navbar>
-  <div class="flex pt-20">
-    <div class="w-2/3 p-4 pl-10">
+  <div class="flex flex-col items-center pt-20 sm:items-baseline lg:flex-row">
+    <div class="w-full p-4 md:mx-auto md:w-11/12 lg:mx-0 lg:w-2/3 lg:pl-10">
       <CartItem
         v-for="(item, index) in store.cart"
         :product="item"
@@ -34,13 +49,20 @@ const closeToast = (i) => {
       ></CartItem>
     </div>
     <!-- Summary -->
-    <div class="fixed right-0 h-fit w-1/3 items-center px-10 text-center">
+    <div
+      class="right-0 h-fit w-full items-center px-10 text-center md:mx-auto md:w-2/3 lg:fixed lg:w-1/3"
+    >
       <!-- Header -->
-      <h1 class="border-b border-[#cbd1d9] py-2 text-2xl font-medium">
+      <h1
+        class="border-b border-[#cbd1d9] py-2 text-xl font-medium md:text-2xl"
+      >
         Order Summary
       </h1>
       <!-- Price -->
-      <ul v-if="store.cart.length != 0" class="border-b border-[#cbd1d9] py-2">
+      <ul
+        v-if="store.cart.length != 0"
+        class="border-b border-[#cbd1d9] py-2 text-sm md:text-base"
+      >
         <li class="flex justify-between">
           <span>Original Price</span>
           <span>${{ store.originalPrice }}</span>
@@ -55,13 +77,13 @@ const closeToast = (i) => {
         </li>
       </ul>
       <!-- Total -->
-      <div class="flex justify-between py-2 text-lg font-medium">
+      <div class="flex justify-between py-2 text-base font-medium md:text-lg">
         <h2>Total</h2>
         <span>${{ store.originalPrice - store.saving }}</span>
       </div>
       <!-- Checkout button -->
       <button
-        class="text-md my-6 h-12 w-full items-center rounded text-center font-medium"
+        class="my-6 h-12 w-full items-center rounded text-center font-medium"
         :class="store.cart.length ? 'bg-yellow-300' : 'bg-blue-700 text-white'"
         @click="store.cart.length ? checkout() : router.replace('/')"
       >

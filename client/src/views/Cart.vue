@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { ref } from "vue";
 import { useStore } from "../store/store.js";
 import { useRouter } from "vue-router";
 import Navbar from "../components/Navbar.vue";
@@ -9,11 +9,26 @@ import Toast from "../components/Toast.vue";
 const router = useRouter();
 const store = useStore();
 const toastMessages = ref([]);
-const renderToast = (id, name) => {
+const toastId = ref(0);
+const renderToast = (name) => {
+  toastId.value++;
   toastMessages.value.push({
-    id: id,
+    id: toastId.value,
     name: name,
   });
+  // Confuse, dont know how it works, but it works :D,
+  // May 10th 2022
+  // As I do some research, each time renderToast is called, it will create time out on whole toastMessages
+  // Example: timeout(toast[toast1],5000), timeout(toast[toast1,toast2],5000),... => Every 5 second it will shift(remove first element) of the same array/data (it call to the same data source -> toastMessages). Kinda interesting
+  autoCloseToast();
+};
+const autoCloseToast = () => {
+  setTimeout(() => {
+    toastMessages.value.shift();
+    // Add log to see when close 1 or many toast manually, it still call the shift function and log the same amount of toast messages have been close manually
+    // Here the drawback, when we close toast messages manually, if we add new toast when the timeout of deleted toast still running, the new toast will close depend on the current running timeout, add at the right time it can close instantly
+    // console.log(toastMessages.value.length);
+  }, 5000);
 };
 const closeToast = (i) => {
   toastMessages.value = toastMessages.value.filter(
@@ -23,21 +38,6 @@ const closeToast = (i) => {
 const checkout = () => {
   window.alert("This feature is under development. Please comeback later");
 };
-// Try to watch toast messages when add new. then close the first index, the code below just only watch the toast messages when remove, not when add.
-// Experimental
-// watch(toastMessages.value, (messages) => {
-//   console.log(messages);
-//   if (messages.length > 0) {
-//     setTimeout(() => toastMessages.value.shift(), 5000);
-//   }
-// });
-// onMounted(() => {
-//   setInterval(() => {
-//     if (toastMessages.value.length != 0) {
-//       closeToast(0);
-//     }
-//   }, 2000);
-// });
 </script>
 <template>
   <Navbar></Navbar>
@@ -48,7 +48,7 @@ const checkout = () => {
         :product="item"
         :index="index"
         :key="item._id"
-        @delete="renderToast(item._id, item.general.name)"
+        @delete="renderToast(item.general.name)"
       ></CartItem>
     </div>
     <!-- Summary -->
@@ -100,7 +100,7 @@ const checkout = () => {
     <Toast
       v-for="(toast, index) in toastMessages"
       :key="toast.id"
-      @closeToast="closeToast(index)"
+      @closeToastByButton="closeToast(index)"
     >
       {{ toast.name }} has been deleted.
     </Toast>

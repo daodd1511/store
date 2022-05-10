@@ -1,7 +1,6 @@
 <script setup>
 import { onBeforeMount } from "vue";
 const emit = defineEmits(["closeToastByButton", "autoCloseToast"]);
-let timer = 30;
 onBeforeMount(() => {
   emit("autoCloseToast");
 });
